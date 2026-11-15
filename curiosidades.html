@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curiosidades | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .box-curiosidade {
+            background-color: #161b26;
+            border-left: 5px solid #f5c518;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .spoiler-borrado {
+            filter: blur(6px);
+            cursor: pointer;
+            transition: filter 0.3s;
+            user-select: none;
+        }
+        .spoiler-borrado.revelado {
+            filter: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Bastidores e Curiosidades do Cinema</h1>
+
+        <div class="box-curiosidade">
+            <span class="tag-genero">Fato Aleatório</span>
+            <p id="texto-curiosidade" style="font-size: 1.1rem; margin: 10px 0;">
+                Em Interestelar (2014), Christopher Nolan plantou 500 acres reais de milho para as cenas da fazenda — e depois vendeu a colheita com lucro.
+            </p>
+            <button class="btn-principal" onclick="novaCuriosidade()">Sortear Outra Curiosidade</button>
+        </div>
+
+        <div class="card-filme">
+            <span class="tag-genero">Alerta de Spoiler</span>
+            <h3>Segredo de O Sexto Sentido (1999)</h3>
+            <p style="color: #9ba1b0; margin-bottom: 10px;">Clique no texto borrado abaixo para revelar:</p>
+            <p class="spoiler-borrado" onclick="this.classList.toggle('revelado')">
+                O psicólogo Malcolm Crowe (Bruce Willis) já estava morto desde a primeira cena do filme e apenas o garoto Cole conseguia vê-lo.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        const curiosidades = [
+            "O rugido do T-Rex em Jurassic Park foi criado misturando sons de filhote de elefante, tigre e jacaré.",
+            "Viggo Mortensen quebrou dois dedos do pé ao chutar um capacete em O Senhor dos Anéis, e a cena real foi usada no filme.",
+            "O código verde de Matrix é na verdade uma receita de sushi escaneada de um livro de culinária japonês.",
+            "Para gravar O Regresso, Leonardo DiCaprio dormiu dentro de carcaças reais de animais e enfrentou temperaturas de -25°C."
+        ];
+
+        function novaCuriosidade() {
+            const aleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+            document.getElementById("texto-curiosidade").textContent = aleatoria;
+        }
+    </script>
+</body>
+</html>

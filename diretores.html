@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandes Diretores | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lista-filmografia {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #323a4e;
+            color: #cfd3de;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Mestres do Cinema</h1>
+        <div class="grid-cards">
+            <div class="card-filme">
+                <span class="tag-genero">Reino Unido</span>
+                <h3>Christopher Nolan</h3>
+                <p>Conhecido por narrativas não lineares, efeitos práticos e ficção científica complexa.</p>
+                <br>
+                <button class="btn-secundario" onclick="alternarFilmografia('filmes-nolan', this)">Ver Principais Obras</button>
+                <div id="filmes-nolan" class="lista-filmografia">
+                    <ul style="padding-left: 18px;">
+                        <li>Amnésia (2000)</li>
+                        <li>Batman: O Cavaleiro das Trevas (2008)</li>
+                        <li>A Origem (2010)</li>
+                        <li>Interestelar (2014)</li>
+                        <li>Oppenheimer (2023)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-filme">
+                <span class="tag-genero">Estados Unidos</span>
+                <h3>Quentin Tarantino</h3>
+                <p>Famoso por diálogos afiados, trilhas sonoras marcantes e referências ao cinema clássico.</p>
+                <br>
+                <button class="btn-secundario" onclick="alternarFilmografia('filmes-tarantino', this)">Ver Principais Obras</button>
+                <div id="filmes-tarantino" class="lista-filmografia">
+                    <ul style="padding-left: 18px;">
+                        <li>Cães de Aluguel (1992)</li>
+                        <li>Pulp Fiction (1994)</li>
+                        <li>Kill Bill: Vol. 1 & 2 (2003/2004)</li>
+                        <li>Bastardos Inglórios (2009)</li>
+                        <li>Django Livre (2012)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-filme">
+                <span class="tag-genero">Canadá</span>
+                <h3>Denis Villeneuve</h3>
+                <p>Referência atual em ficção científica atmosférica e fotografia monumental.</p>
+                <br>
+                <button class="btn-secundario" onclick="alternarFilmografia('filmes-villeneuve', this)">Ver Principais Obras</button>
+                <div id="filmes-villeneuve" class="lista-filmografia">
+                    <ul style="padding-left: 18px;">
+                        <li>Os Suspeitos (2013)</li>
+                        <li>Sicario (2015)</li>
+                        <li>A Chegada (2016)</li>
+                        <li>Blade Runner 2049 (2017)</li>
+                        <li>Duna: Parte 1 e 2 (2021/2024)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function alternarFilmografia(idLista, botao) {
+            const el = document.getElementById(idLista);
+            if (el.style.display === "block") {
+                el.style.display = "none";
+                botao.textContent = "Ver Principais Obras";
+            } else {
+                el.style.display = "block";
+                botao.textContent = "Ocultar Obras";
+            }
+        }
+    </script>
+</body>
+</html>

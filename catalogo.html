@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .barra-filtro {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Catálogo de Filmes</h1>
+        <p style="color: #9ba1b0;">Digite o nome ou gênero do filme abaixo para filtrar instantaneamente:</p>
+
+        <div class="barra-filtro">
+            <input type="text" id="campo-busca-catalogo" class="campo-input" placeholder="Ex: Ficção, Batman, Drama, Matrix..." onkeyup="filtrarCatalogo()">
+        </div>
+
+        <div class="grid-cards" id="lista-filmes">
+            <div class="card-filme" data-info="batman o cavaleiro das trevas acao">
+                <span class="tag-genero">Ação</span>
+                <h3>Batman: O Cavaleiro das Trevas</h3>
+                <p>Ano: 2008 | Nota: <strong style="color: #f5c518;">9.0</strong></p>
+                <p>Batman enfrenta o caos instaurado pelo Coringa em Gotham City.</p>
+            </div>
+            <div class="card-filme" data-info="matrix ficcao cientifica acao">
+                <span class="tag-genero">Ficção Científica</span>
+                <h3>Matrix</h3>
+                <p>Ano: 1999 | Nota: <strong style="color: #f5c518;">8.7</strong></p>
+                <p>Um programador descobre que a realidade é uma simulação criada por máquinas.</p>
+            </div>
+            <div class="card-filme" data-info="cidade de deus drama nacional">
+                <span class="tag-genero">Drama</span>
+                <h3>Cidade de Deus</h3>
+                <p>Ano: 2002 | Nota: <strong style="color: #f5c518;">8.6</strong></p>
+                <p>A ascensão do crime organizado na Cidade de Deus vista pelos olhos de Buscapé.</p>
+            </div>
+            <div class="card-filme" data-info="a origem inception ficcao cientifica suspense">
+                <span class="tag-genero">Ficção Científica</span>
+                <h3>A Origem (Inception)</h3>
+                <p>Ano: 2010 | Nota: <strong style="color: #f5c518;">8.8</strong></p>
+                <p>Um ladrão especializado em extrair segredos do subconsciente durante o sono.</p>
+            </div>
+            <div class="card-filme" data-info="parasita suspense drama">
+                <span class="tag-genero">Suspense</span>
+                <h3>Parasita</h3>
+                <p>Ano: 2019 | Nota: <strong style="color: #f5c518;">8.5</strong></p>
+                <p>Uma família desempregada se infiltra na rotina de uma família milionária em Seul.</p>
+            </div>
+            <div class="card-filme" data-info="o poderoso chefao drama crime">
+                <span class="tag-genero">Drama</span>
+                <h3>O Poderoso Chefão</h3>
+                <p>Ano: 1972 | Nota: <strong style="color: #f5c518;">9.2</strong></p>
+                <p>O patriarca de uma dinastia do crime organizado transfere o controle ao filho relutante.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function filtrarCatalogo() {
+            const termo = document.getElementById("campo-busca-catalogo").value.toLowerCase();
+            const cards = document.querySelectorAll("#lista-filmes .card-filme");
+
+            cards.forEach(card => {
+                const info = card.getAttribute("data-info");
+                card.style.display = info.includes(termo) ? "block" : "none";
+            });
+        }
+    </script>
+</body>
+</html>

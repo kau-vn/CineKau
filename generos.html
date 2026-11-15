@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Gêneros | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .abas-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .painel-genero {
+            display: none;
+            background-color: #161b26;
+            border: 1px solid #282f40;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        .painel-genero.visivel {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Guia de Gêneros Cinematográficos</h1>
+        <p style="color: #9ba1b0;">Clique nas abas abaixo para explorar as características de cada gênero:</p>
+
+        <div class="abas-container">
+            <button class="btn-principal" onclick="abrirAba('scifi', this)">Ficção Científica</button>
+            <button class="btn-secundario" onclick="abrirAba('terror', this)">Terror & Suspense</button>
+            <button class="btn-secundario" onclick="abrirAba('drama', this)">Drama</button>
+            <button class="btn-secundario" onclick="abrirAba('acao', this)">Ação & Aventura</button>
+        </div>
+
+        <div id="scifi" class="painel-genero visivel">
+            <h2 style="color: #f5c518;">Ficção Científica (Sci-Fi)</h2>
+            <p>Explora conceitos especulativos como viagens espaciais, inteligência artificial, viagens no tempo e sociedades futuristas.</p>
+            <p style="margin-top: 10px;"><strong>Clássicos essenciais:</strong> Blade Runner, 2001: Uma Odisseia no Espaço, Matrix e Interestelar.</p>
+        </div>
+
+        <div id="terror" class="painel-genero">
+            <h2 style="color: #f5c518;">Terror & Suspense</h2>
+            <p>Focado em provocar tensão, medo e mistério psicológico por meio de atmosfera, trilha sonora e reviravoltas.</p>
+            <p style="margin-top: 10px;"><strong>Clássicos essenciais:</strong> O Iluminado, Psicose, Corra! e Hereditário.</p>
+        </div>
+
+        <div id="drama" class="painel-genero">
+            <h2 style="color: #f5c518;">Drama</h2>
+            <p>Centrado no desenvolvimento emocional dos personagens e conflitos humanos realistas.</p>
+            <p style="margin-top: 10px;"><strong>Clássicos essenciais:</strong> O Poderoso Chefão, A Lista de Schindler e Clube da Luta.</p>
+        </div>
+
+        <div id="acao" class="painel-genero">
+            <h2 style="color: #f5c518;">Ação & Aventura</h2>
+            <p>Narrativas dinâmicas marcadas por coreografias de combate, perseguições e jornadas épicas.</p>
+            <p style="margin-top: 10px;"><strong>Clássicos essenciais:</strong> Mad Max: Estrada da Fúria, Indiana Jones e John Wick.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function abrirAba(idGenero, botaoClicado) {
+            document.querySelectorAll(".abas-container button").forEach(btn => {
+                btn.className = "btn-secundario";
+            });
+            botaoClicado.className = "btn-principal";
+
+            document.querySelectorAll(".painel-genero").forEach(p => p.classList.remove("visivel"));
+            document.getElementById(idGenero).classList.add("visivel");
+        }
+    </script>
+</body>
+</html>

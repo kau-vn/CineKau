@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Cenas | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .card-galeria {
+            cursor: pointer;
+            text-align: center;
+        }
+        .img-galeria {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #282f40;
+        }
+        #modal-galeria {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+        .modal-conteudo {
+            background: #161b26;
+            border: 2px solid #f5c518;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 620px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+        }
+        #modal-imagem {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Galeria de Fotografia & Atmosfera</h1>
+        <p style="color: #9ba1b0;">Clique em qualquer imagem para ampliar e ler os detalhes técnicos:</p>
+
+        <div class="grid-cards">
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80" alt="Espaço Profundo" class="img-galeria">
+                <h3>Interestelar (2014)</h3>
+                <p class="desc-oculta" style="display: none;">Direção de Fotografia: Hoyte van Hoytema. Sequências espaciais filmadas em câmeras IMAX de 70mm para máxima imersão.</p>
+            </div>
+
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Dunas do Deserto" class="img-galeria">
+                <h3>Duna (2021)</h3>
+                <p class="desc-oculta" style="display: none;">Direção de Fotografia: Greig Fraser. Gravado em locações reais no deserto de Wadi Rum, Jordânia, aproveitando a luz natural.</p>
+            </div>
+
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80" alt="Código Digital Matrix" class="img-galeria">
+                <h3>Matrix (1999)</h3>
+                <p class="desc-oculta" style="display: none;">Direção de Fotografia: Bill Pope. Estética cyberpunk marcada pelos tons esverdeados dentro da simulação e azulados no mundo real.</p>
+            </div>
+
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80" alt="Bastidores e Câmera" class="img-galeria">
+                <h3>Bastidores de Hollywood</h3>
+                <p class="desc-oculta" style="display: none;">Uso de lentes anamórficas clássicas para criar o aspecto widescreen cinematográfico e reflexos de luz característicos.</p>
+            </div>
+
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=900&q=80" alt="Metrópole Noturna" class="img-galeria">
+                <h3>Blade Runner 2049 (2017)</h3>
+                <p class="desc-oculta" style="display: none;">Direção de Fotografia: Roger Deakins (Vencedor do Oscar). Uso magistral de silhuetas, neblina e contrastes em neon.</p>
+            </div>
+
+            <div class="card-filme card-galeria" onclick="abrirModal(this)">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80" alt="Sala de Cinema" class="img-galeria">
+                <h3>A Experiência da Sala Escura</h3>
+                <p class="desc-oculta" style="display: none;">Projeção digital 4K Laser combinada com sistemas de som espacial Dolby Atmos.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-galeria" onclick="fecharModal()">
+        <div class="modal-conteudo" onclick="event.stopPropagation()">
+            <img id="modal-imagem" src="" alt="Imagem Ampliada">
+            <h2 id="modal-titulo" style="color: #f5c518; margin-bottom: 8px;"></h2>
+            <p id="modal-desc" style="margin-bottom: 18px; color: #ffffff; font-size: 1rem; line-height: 1.5;"></p>
+            <button class="btn-principal" onclick="fecharModal()">Fechar Visualização</button>
+        </div>
+    </div>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function abrirModal(card) {
+            const img = card.querySelector("img").src;
+            const titulo = card.querySelector("h3").textContent;
+            const desc = card.querySelector(".desc-oculta").textContent;
+
+            document.getElementById("modal-imagem").src = img;
+            document.getElementById("modal-titulo").textContent = titulo;
+            document.getElementById("modal-desc").textContent = desc;
+            document.getElementById("modal-galeria").style.display = "flex";
+        }
+
+        function fecharModal() {
+            document.getElementById("modal-galeria").style.display = "none";
+        }
+    </script>
+</body>
+</html>

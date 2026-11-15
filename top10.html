@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 da Crítica | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #161b26;
+        }
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #282f40;
+        }
+        th {
+            background-color: #1e2433;
+            color: #f5c518;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Top 10 Filmes Mais Bem Avaliados</h1>
+        <div style="margin: 15px 0;">
+            <button class="btn-principal" onclick="ordenarRanking('nota')">Ordenar por Maior Nota</button>
+            <button class="btn-secundario" onclick="ordenarRanking('ano')" style="margin-left: 10px;">Ordenar por Mais Recente</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Título do Filme</th>
+                    <th>Ano</th>
+                    <th>Nota IMDb</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-ranking"></tbody>
+        </table>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        const filmesTop = [
+            { titulo: "Um Sonho de Liberdade", ano: 1994, nota: 9.3 },
+            { titulo: "O Poderoso Chefão", ano: 1972, nota: 9.2 },
+            { titulo: "Batman: O Cavaleiro das Trevas", ano: 2008, nota: 9.0 },
+            { titulo: "O Senhor dos Anéis: O Retorno do Rei", ano: 2003, nota: 9.0 },
+            { titulo: "A Lista de Schindler", ano: 1993, nota: 9.0 },
+            { titulo: "Pulp Fiction: Tempo de Violência", ano: 1994, nota: 8.9 },
+            { titulo: "Clube da Luta", ano: 1999, nota: 8.8 },
+            { titulo: "Forrest Gump", ano: 1994, nota: 8.8 },
+            { titulo: "A Origem", ano: 2010, nota: 8.8 },
+            { titulo: "Interestelar", ano: 2014, nota: 8.7 }
+        ];
+
+        function renderizarTabela(lista) {
+            const tbody = document.getElementById("corpo-ranking");
+            tbody.innerHTML = "";
+            lista.forEach((filme, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>#${index + 1}</strong></td>
+                        <td>${filme.titulo}</td>
+                        <td>${filme.ano}</td>
+                        <td style="color: #f5c518; font-weight: bold;">${filme.nota.toFixed(1)}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function ordenarRanking(criterio) {
+            const copia = [...filmesTop];
+            if (criterio === "nota") copia.sort((a, b) => b.nota - a.nota);
+            if (criterio === "ano") copia.sort((a, b) => b.ano - a.ano);
+            renderizarTabela(copia);
+        }
+
+        renderizarTabela(filmesTop);
+    </script>
+</body>
+</html>

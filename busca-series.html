@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Online (API TVMaze) | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .busca-api-box {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .poster-api {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            background-color: #0d0f14;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Buscador de Séries e Shows (API TVMaze)</h1>
+        <p style="color: #9ba1b0;">Pesquise qualquer produção em tempo real diretamente na API pública do TVMaze:</p>
+
+        <div class="busca-api-box">
+            <input type="text" id="termo-tvmaze" class="campo-input" placeholder="Ex: Breaking Bad, Batman, Dark, The Last of Us..." style="margin-bottom: 0;">
+            <button class="btn-principal" onclick="buscarNaApi()">Buscar</button>
+        </div>
+
+        <p id="status-tvmaze" style="color: #f5c518; font-weight: bold;"></p>
+        <div class="grid-cards" id="resultados-tvmaze"></div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        async function buscarNaApi() {
+            const termo = document.getElementById("termo-tvmaze").value.trim();
+            const status = document.getElementById("status-tvmaze");
+            const container = document.getElementById("resultados-tvmaze");
+
+            if (!termo) {
+                status.textContent = "Digite o nome de uma série ou filme para pesquisar.";
+                return;
+            }
+
+            status.textContent = "Consultando servidor TVMaze...";
+            container.innerHTML = "";
+
+            try {
+                const resposta = await fetch(`https://api.tvmaze.com/search/shows?q=${encodeURIComponent(termo)}`);
+                const dados = await resposta.json();
+
+                if (dados.length === 0) {
+                    status.textContent = "Nenhum resultado encontrado.";
+                    return;
+                }
+
+                status.textContent = `${dados.length} resultados encontrados para "${termo}":`;
+
+                dados.slice(0, 8).forEach(item => {
+                    const show = item.show;
+                    const imagem = show.image ? show.image.medium : "https://via.placeholder.com/210x295?text=Sem+Capa";
+                    const nota = show.rating && show.rating.average ? show.rating.average : "N/A";
+                    const generos = show.genres.length > 0 ? show.genres.join(", ") : "Geral";
+                    const resumo = show.summary ? show.summary.replace(/<[^>]*>?/gm, '').slice(0, 130) + "..." : "Sem sinopse cadastrada.";
+
+                    container.innerHTML += `
+                        <div class="card-filme">
+                            <img src="${imagem}" alt="${show.name}" class="poster-api">
+                            <span class="tag-genero">${generos}</span>
+                            <h3>${show.name}</h3>
+                            <p>Nota: <strong style="color: #f5c518;">${nota}</strong> | Idioma: ${show.language || "-"}</p>
+                            <p style="font-size: 0.9rem; color: #cfd3de; margin-top: 8px;">${resumo}</p>
+                        </div>
+                    `;
+                });
+            } catch (erro) {
+                status.textContent = "Erro ao conectar com a API. Verifique sua conexão.";
+            }
+        }
+
+        // Faz uma busca inicial automática ao abrir a página
+        document.getElementById("termo-tvmaze").value = "Batman";
+        buscarNaApi();
+    </script>
+</body>
+</html>

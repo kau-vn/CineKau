@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especial Oscar | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .filtros-oscar {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Vencedores do Oscar</h1>
+        <p style="color: #9ba1b0;">Selecione uma categoria para visualizar os premiados:</p>
+
+        <div class="filtros-oscar">
+            <button class="btn-principal" onclick="filtrarOscar('todos', this)">Todos</button>
+            <button class="btn-secundario" onclick="filtrarOscar('filme', this)">Melhor Filme</button>
+            <button class="btn-secundario" onclick="filtrarOscar('direcao', this)">Melhor Direção</button>
+            <button class="btn-secundario" onclick="filtrarOscar('animacao', this)">Melhor Animação</button>
+        </div>
+
+        <div class="grid-cards" id="cards-oscar">
+            <div class="card-filme" data-cat="filme">
+                <span class="tag-genero">Melhor Filme (2024)</span>
+                <h3>Oppenheimer</h3>
+                <p>Vencedor de 7 estatuetas incluindo Melhor Filme e Direção.</p>
+            </div>
+            <div class="card-filme" data-cat="filme">
+                <span class="tag-genero">Melhor Filme (2020)</span>
+                <h3>Parasita</h3>
+                <p>Primeiro filme de língua não inglesa a vencer Melhor Filme.</p>
+            </div>
+            <div class="card-filme" data-cat="direcao">
+                <span class="tag-genero">Melhor Direção (2024)</span>
+                <h3>Christopher Nolan</h3>
+                <p>Premiado pelo trabalho épico em Oppenheimer.</p>
+            </div>
+            <div class="card-filme" data-cat="direcao">
+                <span class="tag-genero">Melhor Direção (2018)</span>
+                <h3>Guillermo del Toro</h3>
+                <p>Premiado pela direção de A Forma da Água.</p>
+            </div>
+            <div class="card-filme" data-cat="animacao">
+                <span class="tag-genero">Melhor Animação (2024)</span>
+                <h3>O Menino e a Garça</h3>
+                <p>Obra-prima de Hayao Miyazaki pelo Studio Ghibli.</p>
+            </div>
+            <div class="card-filme" data-cat="animacao">
+                <span class="tag-genero">Melhor Animação (2019)</span>
+                <h3>Homem-Aranha no Aranhaverso</h3>
+                <p>Revolucionou o estilo visual das animações modernas.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function filtrarOscar(categoria, botaoClicado) {
+            document.querySelectorAll(".filtros-oscar button").forEach(btn => {
+                btn.className = "btn-secundario";
+            });
+            botaoClicado.className = "btn-principal";
+
+            const cards = document.querySelectorAll("#cards-oscar .card-filme");
+            cards.forEach(card => {
+                if (categoria === "todos" || card.getAttribute("data-cat") === categoria) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

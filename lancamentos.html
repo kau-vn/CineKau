@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lançamentos | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .caixa-contador {
+            background-color: #161b26;
+            border: 2px solid #f5c518;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #relogio-estreia {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e50914;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Próximos Lançamentos nos Cinemas</h1>
+
+        <div class="caixa-contador">
+            <h2>Contagem Regressiva para a Grande Estreia do Mês</h2>
+            <p style="color: #9ba1b0;">Vingadores: Doomsday — Sessão Especial IMAX</p>
+            <div id="relogio-estreia">Calculando...</div>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-filme">
+                <span class="tag-genero">Dezembro 2026</span>
+                <h3>Duna: Messias</h3>
+                <p>Continuação direta da saga épica dirigida por Denis Villeneuve.</p>
+                <br>
+                <button class="btn-secundario" onclick="ativarLembrete(this)">Ativar Lembrete</button>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">Janeiro 2027</span>
+                <h3>The Batman - Parte II</h3>
+                <p>O retorno de Robert Pattinson às ruas sombrias de Gotham.</p>
+                <br>
+                <button class="btn-secundario" onclick="ativarLembrete(this)">Ativar Lembrete</button>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">Fevereiro 2027</span>
+                <h3>Homem-Aranha: Além do Aranhaverso</h3>
+                <p>O desfecho da trilogia animada de Miles Morales.</p>
+                <br>
+                <button class="btn-secundario" onclick="ativarLembrete(this)">Ativar Lembrete</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        // Contador regressivo para daqui a 15 dias
+        const dataAlvo = new Date().getTime() + (15 * 24 * 60 * 60 * 1000);
+
+        setInterval(() => {
+            const agora = new Date().getTime();
+            const diff = dataAlvo - agora;
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("relogio-estreia").textContent = `${dias}d ${horas}h ${mins}m ${segs}s`;
+        }, 1000);
+
+        function ativarLembrete(botao) {
+            botao.textContent = "Lembrete Ativado!";
+            botao.style.backgroundColor = "#198754";
+            botao.style.color = "#ffffff";
+            botao.style.borderColor = "#198754";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilhas Sonoras | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .barra-fundo {
+            width: 100%;
+            height: 10px;
+            background-color: #252b3b;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        #barra-progresso {
+            width: 0%;
+            height: 100%;
+            background-color: #e50914;
+            transition: width 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Trilhas Sonoras Inesquecíveis</h1>
+
+        <div class="card-filme" style="margin-bottom: 25px; border-color: #f5c518;">
+            <p style="color: #f5c518; font-weight: bold;">Player Sintetizador Web Audio</p>
+            <h3 id="faixa-atual">Clique em uma trilha abaixo para ouvir o tema</h3>
+            <div class="barra-fundo">
+                <div id="barra-progresso"></div>
+            </div>
+            <button class="btn-secundario" onclick="pararAudio()">Parar Som</button>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-filme">
+                <span class="tag-genero">Hans Zimmer</span>
+                <h3>Time — A Origem (2010)</h3>
+                <p>Progressão de acordes graves e atmosféricos que cresce em intensidade.</p>
+                <br>
+                <button class="btn-principal" onclick="tocarTema('time')">Ouvir Prévia</button>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">John Williams</span>
+                <h3>Imperial March — Star Wars</h3>
+                <p>O tema orquestral clássico de Darth Vader em notas sintetizadas.</p>
+                <br>
+                <button class="btn-principal" onclick="tocarTema('starwars')">Ouvir Prévia</button>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">John Williams</span>
+                <h3>Hedwig's Theme — Harry Potter</h3>
+                <p>Melodia mística em timbre cristalino que marca o início da saga.</p>
+                <br>
+                <button class="btn-principal" onclick="tocarTema('potter')">Ouvir Prévia</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        let audioCtx = null;
+        let timeoutsNotas = [];
+        let intervaloBarra = null;
+
+        const temas = {
+            time: {
+                nome: "Time - Hans Zimmer (A Origem)",
+                tipo: "sine",
+                notas: [
+                    { freq: 220.00, dur: 0.7 }, // Lá
+                    { freq: 329.63, dur: 0.7 }, // Mi
+                    { freq: 196.00, dur: 0.7 }, // Sol
+                    { freq: 293.66, dur: 0.7 }, // Ré
+                    { freq: 174.61, dur: 0.7 }, // Fá
+                    { freq: 261.63, dur: 0.9 }  // Dó
+                ]
+            },
+            starwars: {
+                nome: "The Imperial March - John Williams (Star Wars)",
+                tipo: "sawtooth",
+                notas: [
+                    { freq: 392.00, dur: 0.45 }, // Sol
+                    { freq: 392.00, dur: 0.45 }, // Sol
+                    { freq: 392.00, dur: 0.45 }, // Sol
+                    { freq: 311.13, dur: 0.32 }, // Mi bemol
+                    { freq: 466.16, dur: 0.15 }, // Si bemol
+                    { freq: 392.00, dur: 0.45 }, // Sol
+                    { freq: 311.13, dur: 0.32 }, // Mi bemol
+                    { freq: 466.16, dur: 0.15 }, // Si bemol
+                    { freq: 392.00, dur: 0.80 }  // Sol
+                ]
+            },
+            potter: {
+                nome: "Hedwig's Theme - John Williams (Harry Potter)",
+                tipo: "triangle",
+                notas: [
+                    { freq: 493.88, dur: 0.35 }, // Si
+                    { freq: 659.25, dur: 0.50 }, // Mi
+                    { freq: 783.99, dur: 0.25 }, // Sol
+                    { freq: 739.99, dur: 0.35 }, // Fá#
+                    { freq: 659.25, dur: 0.70 }, // Mi
+                    { freq: 987.77, dur: 0.35 }, // Si agudo
+                    { freq: 880.00, dur: 0.80 }, // Lá
+                    { freq: 739.99, dur: 0.80 }  // Fá#
+                ]
+            }
+        };
+
+        function pararAudio() {
+            timeoutsNotas.forEach(t => clearTimeout(t));
+            timeoutsNotas = [];
+            clearInterval(intervaloBarra);
+            if (audioCtx) {
+                audioCtx.close();
+                audioCtx = null;
+            }
+            document.getElementById("barra-progresso").style.width = "0%";
+            document.getElementById("faixa-atual").textContent = "Reprodução interrompida.";
+        }
+
+        function tocarTema(chave) {
+            pararAudio();
+            const tema = temas[chave];
+            document.getElementById("faixa-atual").textContent = "Tocando agora: " + tema.nome;
+
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            let tempoAcumulado = 0;
+
+            tema.notas.forEach(nota => {
+                const t = setTimeout(() => {
+                    if (!audioCtx) return;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    osc.type = tema.tipo;
+                    osc.frequency.setValueAtTime(nota.freq, audioCtx.currentTime);
+
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + nota.dur);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + nota.dur);
+                }, tempoAcumulado * 1000);
+
+                timeoutsNotas.push(t);
+                tempoAcumulado += nota.dur + 0.06;
+            });
+
+            // Atualiza barra de progresso sincronizada com a duração total
+            const duracaoTotalMs = tempoAcumulado * 1000;
+            const inicio = Date.now();
+            intervaloBarra = setInterval(() => {
+                const pct = Math.min(100, ((Date.now() - inicio) / duracaoTotalMs) * 100);
+                document.getElementById("barra-progresso").style.width = pct + "%";
+                if (pct >= 100) {
+                    clearInterval(intervaloBarra);
+                    document.getElementById("faixa-atual").textContent = "Prévia concluída: " + tema.nome;
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

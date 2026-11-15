@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato & Sugestões | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .form-contato {
+            max-width: 600px;
+            background-color: #161b26;
+            border: 1px solid #282f40;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Fale Conosco / Sugira um Filme</h1>
+        <p style="color: #9ba1b0;">Envie sua crítica, dúvida ou sugestão para o nosso catálogo:</p>
+
+        <form class="form-contato" onsubmit="enviarContato(event)">
+            <label>Seu Nome:</label>
+            <input type="text" id="contato-nome" class="campo-input" placeholder="Digite seu nome">
+
+            <label>Seu E-mail:</label>
+            <input type="email" id="contato-email" class="campo-input" placeholder="seuemail@exemplo.com">
+
+            <label>Filme Sugerido ou Mensagem:</label>
+            <textarea id="contato-msg" class="campo-input" rows="4" placeholder="Escreva aqui..."></textarea>
+
+            <button type="submit" class="btn-principal">Enviar Mensagem</button>
+            <p id="feedback-contato" style="margin-top: 15px; font-weight: bold;"></p>
+        </form>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function enviarContato(event) {
+            event.preventDefault();
+            const nome = document.getElementById("contato-nome").value.trim();
+            const email = document.getElementById("contato-email").value.trim();
+            const msg = document.getElementById("contato-msg").value.trim();
+            const feedback = document.getElementById("feedback-contato");
+
+            if (!nome || !email.includes("@") || msg.length < 5) {
+                feedback.style.color = "#e50914";
+                feedback.textContent = "Por favor, preencha nome, um e-mail válido e uma mensagem.";
+                return;
+            }
+
+            feedback.style.color = "#198754";
+            feedback.textContent = `Obrigado, ${nome}! Sua mensagem foi enviada com sucesso.`;
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Cinéfilo | CineVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pergunta-box {
+            background-color: #161b26;
+            border: 1px solid #282f40;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .opcao-label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Quiz Cinéfilo</h1>
+        <p style="color: #9ba1b0; margin-bottom: 20px;">Responda às 3 perguntas abaixo e veja sua pontuação:</p>
+
+        <div class="pergunta-box">
+            <h3>1. Quem dirigiu o filme "A Origem" (Inception)?</h3>
+            <label class="opcao-label"><input type="radio" name="q1" value="0"> Steven Spielberg</label>
+            <label class="opcao-label"><input type="radio" name="q1" value="1"> Christopher Nolan</label>
+            <label class="opcao-label"><input type="radio" name="q1" value="0"> Martin Scorsese</label>
+        </div>
+
+        <div class="pergunta-box">
+            <h3>2. Qual foi o primeiro filme de língua não inglesa a vencer o Oscar de Melhor Filme?</h3>
+            <label class="opcao-label"><input type="radio" name="q2" value="1"> Parasita</label>
+            <label class="opcao-label"><input type="radio" name="q2" value="0"> Cidade de Deus</label>
+            <label class="opcao-label"><input type="radio" name="q2" value="0"> A Vida é Bela</label>
+        </div>
+
+        <div class="pergunta-box">
+            <h3>3. Qual estúdio japonês produziu "A Viagem de Chihiro"?</h3>
+            <label class="opcao-label"><input type="radio" name="q3" value="0"> Toei Animation</label>
+            <label class="opcao-label"><input type="radio" name="q3" value="0"> MAPPA</label>
+            <label class="opcao-label"><input type="radio" name="q3" value="1"> Studio Ghibli</label>
+        </div>
+
+        <button class="btn-principal" onclick="corrigirQuiz()">Ver Resultado</button>
+        <p id="resultado-quiz" style="margin-top: 15px; font-size: 1.2rem; font-weight: bold; color: #f5c518;"></p>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        function corrigirQuiz() {
+            let pontos = 0;
+            ["q1", "q2", "q3"].forEach(q => {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                if (selecionada && selecionada.value === "1") pontos++;
+            });
+            document.getElementById("resultado-quiz").textContent = `Você acertou ${pontos} de 3 perguntas!`;
+        }
+    </script>
+</body>
+</html>

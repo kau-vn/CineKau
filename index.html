@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse | Portal de Cinema e Séries</title>
+    <!-- Nível 1: CSS Externo -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Nível 2: CSS Interno -->
+    <style>
+        .banner-destaque {
+            background: linear-gradient(135deg, #1b2234 0%, #2c0b14 100%);
+            border: 1px solid #e50914;
+            border-radius: 10px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+        .badge-api {
+            background-color: #198754;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="topo-site">
+            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <nav id="menu-principal">
+                <a href="index.html" class="nav-link">01. Home</a>
+                <a href="catalogo.html" class="nav-link">02. Catálogo</a>
+                <a href="lancamentos.html" class="nav-link">03. Lançamentos</a>
+                <a href="top10.html" class="nav-link">04. Top 10</a>
+                <a href="oscar.html" class="nav-link">05. Oscar</a>
+                <a href="diretores.html" class="nav-link">06. Diretores</a>
+                <a href="generos.html" class="nav-link">07. Gêneros</a>
+                <a href="trilhas.html" class="nav-link">08. Trilhas</a>
+                <a href="curiosidades.html" class="nav-link">09. Curiosidades</a>
+                <a href="galeria.html" class="nav-link">10. Galeria</a>
+                <a href="quiz.html" class="nav-link">11. Quiz</a>
+                <a href="busca-series.html" class="nav-link">12. Busca API</a>
+                <a href="acervo-ghibli.html" class="nav-link">13. Ghibli API</a>
+                <a href="clube.html" class="nav-link">14. Clube VIP (CEP)</a>
+                <a href="contato.html" class="nav-link">15. Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="banner-destaque">
+            <!-- Nível 3: CSS Inline aplicado no parágrafo de saudação -->
+            <p id="saudacao-usuario" style="color: #f5c518; font-weight: bold; margin-bottom: 8px;">Bem-vindo ao CineVerse!</p>
+            <h1 id="titulo-destaque">Duna: Parte Dois (2024)</h1>
+            <p id="desc-destaque" style="max-width: 750px; margin-bottom: 20px; color: #cfd3de;">
+                Paul Atreides se une a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram sua família.
+            </p>
+            <button class="btn-principal" onclick="trocarDestaque()">Trocar Filme em Destaque</button>
+            <a href="catalogo.html" class="btn-secundario" style="margin-left: 10px;">Explorar Catálogo</a>
+        </section>
+
+        <h2>Explore Nossas Seções</h2>
+        <div class="grid-cards">
+            <div class="card-filme">
+                <span class="tag-genero">Interativo</span>
+                <h3>Quiz Cinéfilo</h3>
+                <p>Teste seus conhecimentos sobre clássicos e blockbusters do cinema mundial.</p>
+                <br>
+                <a href="quiz.html" class="btn-secundario">Jogar Agora</a>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">Integração Real <span class="badge-api">API</span></span>
+                <h3>Buscador TVMaze</h3>
+                <p>Pesquise séries e produções em tempo real direto da base de dados oficial.</p>
+                <br>
+                <a href="busca-series.html" class="btn-secundario">Abrir Buscador</a>
+            </div>
+            <div class="card-filme">
+                <span class="tag-genero">Integração Real <span class="badge-api">API</span></span>
+                <h3>Acervo Studio Ghibli</h3>
+                <p>Explore todas as obras do estúdio japonês carregadas dinamicamente via API.</p>
+                <br>
+                <a href="acervo-ghibli.html" class="btn-secundario">Ver Acervo</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="rodape-site">
+            <p>CineVerse &copy; 2026 - Projeto de Desenvolvimento Web (HTML5, CSS3 & JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script>
+        // Ação de JS da página Home: saudação por horário + alternador de filmes em destaque
+        const hora = new Date().getHours();
+        const saudacaoEl = document.getElementById("saudacao-usuario");
+        if (hora < 12) saudacaoEl.textContent = "Bom dia, cinéfilo! Confira o destaque de hoje:";
+        else if (hora < 18) saudacaoEl.textContent = "Boa tarde, cinéfilo! Confira o destaque de hoje:";
+        else saudacaoEl.textContent = "Boa noite, cinéfilo! Sessão da noite pronta:";
+
+        const destaques = [
+            {
+                titulo: "Duna: Parte Dois (2024)",
+                desc: "Paul Atreides se une a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram sua família."
+            },
+            {
+                titulo: "Interestelar (2014)",
+                desc: "Uma equipe de exploradores viaja através de um buraco de minhoca no espaço na tentativa de garantir a sobrevivência da humanidade."
+            },
+            {
+                titulo: "Oppenheimer (2023)",
+                desc: "A história do físico americano J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica durante a Segunda Guerra Mundial."
+            }
+        ];
+
+        let indiceAtual = 0;
+        function trocarDestaque() {
+            indiceAtual = (indiceAtual + 1) % destaques.length;
+            document.getElementById("titulo-destaque").textContent = destaques[indiceAtual].titulo;
+            document.getElementById("desc-destaque").textContent = destaques[indiceAtual].desc;
+        }
+    </script>
+</body>
+</html>
