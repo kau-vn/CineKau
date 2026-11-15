@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lançamentos | CineVerse</title>
+    <title>Lançamentos | CineKau</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .caixa-contador {
@@ -25,7 +25,7 @@
 <body>
     <header>
         <div id="topo-site">
-            <a href="index.html" id="logo">Cine<span>Verse</span></a>
+            <a href="index.html" id="logo">Cine<span>Kau</span></a>
             <nav id="menu-principal">
                 <a href="index.html" class="nav-link">01. Home</a>
                 <a href="catalogo.html" class="nav-link">02. Catálogo</a>
@@ -88,8 +88,7 @@
 
     <script src="js/global.js"></script>
     <script>
-        // Contador regressivo para daqui a 15 dias
-        const dataAlvo = new Date().getTime() + (15 * 24 * 60 * 60 * 1000);
+        const dataAlvo = new Date("December 18, 2026 20:00:00").getTime();
 
         setInterval(() => {
             const agora = new Date().getTime();
